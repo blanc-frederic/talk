@@ -4,6 +4,9 @@
 .reveal .controls .navigate-up { bottom: 4.4em; }
 .reveal .controls .navigate-down { padding-bottom: 3.4em; }
 
+.reveal .container { display: flex; }
+.container div { margin: 0 10px; }
+
 hr { border: .1em solid #2a76dd; }
 
 .slidetitle { background: radial-gradient(#555a5f, #1c1e20); }
