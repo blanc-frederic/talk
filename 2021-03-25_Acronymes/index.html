@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Apéro PHP du 25/03/2021 - Bonnes pratiques résumées en 5 acronymes</title>
+
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/white.css" id="theme">
+		
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<link rel="stylesheet" href="../custom/style.css" id="theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Bonnes pratiques résumées en 5 acronymes</h1>
+					<hr/>
+					<p>Apéro PHP 25/03/2021</p>
+				</section>
+				<section>
+					<h2>1. DRY : Don’t Repeat Yourself</h2>
+					<p>Éliminer les duplications de code ⇒ factoriser</p>
+					<ul>
+						<li>Ne pas réinventer la roue</li>
+						<li>Bugs / améliorations sont appliqués pour tout</li>
+					</ul>
+				</section>
+				<section>
+					<h2>2. KISS : Keep It Simple, Stupid</h2>
+					<p>Ne pas faire trop “malin” ou “magique”</p>
+					<ul>
+						<li>On passe plus de temps à lire du code qu’à en écrire</li>
+						<li>Code simple = plus facile à comprendre, donc à maintenir</li>
+					</ul>
+				</section>
+				<section>
+					<section>
+						<h2>3. LoD : Law of Demeter</h2>
+						<p><em>On demande au chien de nous suivre, pas à ses pattes</em></p>
+						<p>Une méthode doit utiliser uniquement les méthodes de ces objets :</p>
+						<ul>
+							<li>sa classe</li>
+							<li>ses paramètres</li>
+							<li>instanciés par elle</li>
+							<li>propriétés de sa classe</li>
+							<li>variables globales</li>
+						</ul>
+					</section>
+					<section data-transition="none">
+						<h3>Law of Demeter : infractions</h3>
+						<div class="container">
+							<div><img src="assets/lod-user.png"></div>
+							<div><img src="assets/lod-controller.png"></div>
+						</div>
+					</section>
+					<section data-transition="none">
+						<h3>Law of Demeter : corrections</h3>
+						<div class="container">
+							<div><img src="assets/lod-fixeduser.png"></div>
+							<div><img src="assets/lod-fixedcontroller.png"></div>
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>4. S.O.L.I.D.</h2>
+						<ul>
+							<li>Single Responsibility Principle</li>
+							<li>Open / Closed Principle</li>
+							<li>Liskov Substitution Principle</li>
+							<li>Interface Segregation Principle</li>
+							<li>Dependency Inversion Principle</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Single Responsibility Principle</h3>
+						<p>un module, une classe ou une méthode doit avoir une et une seule responsabilité</p>
+					</section>
+					<section>
+						<h3>Open / Closed Principle</h3>
+						<p>une classe / fonction / module doit être ouverte à l'extension, mais fermée à la modification</p>
+					</section>
+					<section>
+						<h3>Open / Closed Principle : exemple</h3>
+						<div class="container">
+							<div><img src="assets/ocp-before.png"></div>
+							<div><img src="assets/ocp-after.png"></div>
+						</div>
+					</section>
+					<section>
+						<h3>Liskov Substitution Principle</h3>
+						<p>si Fille extends Mère alors Mère doit pouvoir être remplacé par Fille sans aucun soucis</p>
+					</section>
+					<section>
+						<h3>Interface Segregation Principle</h3>
+						<p>créer une interface pour chaque usage plutôt qu’une interface générale</p>
+					</section>
+					<section>
+						<h3>Dependency Inversion Principle</h3>
+						<p>il faut dépendre des abstractions, pas des implémentations</p>
+					</section>
+				</section>
+				<section>
+					<h2>5. TDD : Test Driven Development</h2>
+					<p>Se laisser porter jusqu’à la solution, puis l’améliorer</p>
+					<img src="assets/tdd.png" alt="Ecrire test > Ecrire code > Refactoriser > Répéter"/>
+				</section>
+				<section>
+					<h2>Merci !</h2>
+					<p>Des questions ?</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				transitionSpeed: 'fast',
+				plugins: [ RevealHighlight ]
+			});
+		</script>
+	</body>
+</html>
