@@ -1,0 +1,19 @@
+.reveal section {
+    background: white;
+}
+hr {
+    border-color: #EB6610;
+}
+.reveal {
+    background: url('safti.svg') no-repeat 1em 1em;
+}
+.reveal, .reveal h1, .reveal h2, .reveal h3 {
+    color: #6B6C6A;
+}
+.reveal .controls, .reveal a, .reveal a:hover, .reveal .progress { 
+    color: #EB6610;
+}
+.reveal .progress { height: 0.4em; }
+.reveal .progress-time div {
+    background: #EB6610;
+}
