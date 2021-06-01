@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>AFUP Day du 11/06/2021 - L'architecture hexagonale ... concrètement</title>
+
+	<link rel="stylesheet" href="../revealjs/dist/reset.css">
+	<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+	<link rel="stylesheet" href="../revealjs/dist/theme/white.css" id="theme">
+
+	<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" id="highlight-theme">
+
+	<link rel="stylesheet" href="../custom/style.css" id="custom-theme">
+	<link rel="stylesheet" href="assets/safti.css" id="safti-theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>L'architecture hexagonale ... concrètement</h1>
+				<hr />
+				<p>AFUP Day 11/06/2021 - Toulouse</p>
+			</section>
+			<section>
+				<div class="container">
+					<img src="assets/safti-ca-le-fait.jpg" alt="SAFTI ça le fait !" width="40%" />
+					<div>
+						<p>Fred Blanc</p>
+						<p><a href="https://github.com/blanc-frederic">github.com/blanc-frederic</a></p>
+						<p>Lead dev chez <a href="https://www.safti.fr">SAFTI</a></p>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2>Discussions de développeurs</h2>
+				<ul>
+					<li>“Ah, si on pouvait utiliser XXX ! ça a l’air trop bien !”</li>
+					<li>“Oui, mais vu tout ce qu’il faudrait réécrire ...”</li>
+				</ul>
+				<p>&nbsp;</p>
+				<p>XXX = nouvelle lib / architecture / service / framework</p>
+			</section>
+			<section>
+				<h2>Solution universelle</h2>
+				<p>[image lego]</p>
+			</section>
+			<section>
+				<h2>Version architecture hexagonale</h2>
+				<div class="container">
+					<div>
+						<p>Ports</p>
+					</div>
+					<div>
+						<p>Adapters</p>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2>Architecture hexagonale</h2>
+				<p>[image hexagone]</p>
+			</section>
+			<section>
+				<h2>Autres avantages</h2>
+				<ul>
+					<li>Choix infrastructure plus tard</li>
+					<li class="fragment">Démo plus rapidement</li>
+					<li class="fragment">Montées de versions framework et lib plus faciles</li>
+					<li class="fragment">Bascule facile vers nouvelles lib / services</li>
+					<li class="fragment">Tests plus simples à écrire</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Attention</h2>
+				<ul>
+					<li>un peu plus de code à écrire</li>
+					<li class="fragment">outils d’automatisation de code ne fonctionnent pas tous</li>
+				</ul>
+				<p class="fragment">⇒ à réserver aux applications complexes… ou qui vont le devenir</p>
+			</section>
+			<section>
+				<h2>Point de départ</h2>
+				<p>Exemple sous Symfony… car + utilisé et s’y prête bien</p>
+				<p class="fragment">Framework, API, DB, etc. ⇒ détails techniques, remplaçables<br>
+					Code métier ⇒ le plus de valeur</p>
+				<p class="fragment">Rendre hexagonal = séparer “Domain” et “Infrastructure”</p>
+			</section>
+			<section>
+				<h2>Structure de dossiers</h2>
+				<pre>
+	src
+	  Domain
+	    … (Code métier, uniquement du PHP)
+	  Infrastructure
+	    … (code technique & utilisations dépendances)
+				</pre>
+			</section>
+			<section>
+				<h2>Etape 1 : namespaces</h2>
+				<p>Modification autoload dans composer.json</p>
+				<ul>
+					<li>"App\\": "src/" ⇒ "": "src/"</li>
+					<li>"App\\Tests\\": "tests/" ⇒ "Tests\\": "tests/"</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Etape 2 : déplacement du Kernel</h2>
+				<p>src/Kernel.php ⇒ src/Infrastructure/Symfony/Kernel.php</p>
+				<p>Et corriger les instanciations dans :</p>
+				<ul>
+					<li>bin/console</li>
+					<li>public/index.php</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Etape 3 : configuration services</h2>
+				<pre><code>
+services:
+  Domain\:
+    resource: '../src/Domain
+    exclude:
+    - '../src/Domain/Entity/'
+  Infrastructure\:
+    resource: '../src/Infrastructure'
+    exclude:
+    - '../src/Infrastructure/Symfony/Kernel.php'
+  Infrastructure\Symfony\Controller\:
+    resource: '../src/Infrastructure/Symfony/Controller/'
+    tags: ['controller.service_arguments']
+				</code></pre>
+			</section>
+			<section>
+				<h2>Et maintenant… on code</h2>
+				<dl>
+					<dt>Domain</dt>
+					<dd>Organiser en modules métiers<br>
+						Interface pour chaque besoin</dd>
+					<dt>Infrastructure</dt>
+					<dd>Organisation technique (ex: type de classe ou Composant)<br>
+						Implémenter interfaces du domaine</dd>
+				</dl>
+			</section>
+			<section>
+				<h2>Exemple - Domain</h2>
+				<p>[image code domaine]</p>
+			</section>
+			<section>
+				<h2>Exemple - Infrastructure</h2>
+				<p>[image code Infrastructure]</p>
+			</section>
+			<section>
+				<h2>Changer l’implémentation</h2>
+				<p>Ecrire simplement une nouvelle classe qui implémente l’interface !</p>
+			</section>
+			<section>
+				<h2>Outils</h2>
+				<p><b>Deptrac</b> : <a href="https://github.com/qossmic/deptrac">github.com/qossmic/deptrac</a></p>
+				<p>Règles :</p>
+				<ol>
+					<li>Domain n’utilise pas Infrastructure</li>
+					<li>Domain n’utilise aucun namespace externe<br> (ex: Symfony, Doctrine, etc.)</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Plusieurs contextes</h2>
+				<pre>
+	src
+	  Contexte1
+	    Domain
+	    Infrastructure
+	  Contexte2
+	    Domain
+	    Infrastructure
+	  Shared
+	    Domain
+	    Infrastructure
+				</pre>
+			</section>
+			<section>
+				<h2>Couches supplémentaires</h2>
+				<pre>
+	src
+	  Contexte1
+	    Application
+	    Domain
+	    Infrastructure
+	      Symfony
+	      Doctrine
+	    Drivers
+	      Controller
+	      Command
+				</pre>
+			</section>
+			<section>
+				<h2>Merci !</h2>
+				<p>Des questions ?</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="../revealjs/dist/reveal.js"></script>
+	<script src="../revealjs/plugin/notes/notes.js"></script>
+	<script src="../revealjs/plugin/markdown/markdown.js"></script>
+	<script src="../revealjs/plugin/highlight/highlight.js"></script>
+	<script>
+		Reveal.initialize({
+			hash: true,
+			transitionSpeed: 'fast',
+			plugins: [RevealHighlight],
+			allottedTime: 30 * 60 * 1000,
+			keyboard: {
+				13: () => {
+					ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+				},
+			},
+			dependencies: [
+				{ src: '../custom/plugin/elapsed-time-bar/elapsed-time-bar.js' }
+			]
+		});
+	</script>
+</body>
+
+</html>
