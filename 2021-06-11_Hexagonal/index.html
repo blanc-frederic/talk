@@ -36,35 +36,26 @@
 				</div>
 			</section>
 			<section>
-				<h2>Discussions de développeurs</h2>
-				<ul>
-					<li>“Ah, si on pouvait utiliser XXX ! ça a l’air trop bien !”</li>
-					<li>“Oui, mais vu tout ce qu’il faudrait réécrire ...”</li>
-				</ul>
+				<h2>Problème</h2>
+				<p>- “Ah, si on pouvait utiliser XXX ! ça a l’air trop bien !”</p>
+				<p>- “Oui, mais vu tout ce qu’il faudrait réécrire ...”</p>
 				<p>&nbsp;</p>
 				<p>XXX = nouvelle lib / architecture / service / framework</p>
 			</section>
 			<section>
 				<h2>Solution universelle</h2>
-				<p>[image lego]</p>
+				<p><img src="assets/briques.png" alt="briques" /></p>
 			</section>
 			<section>
 				<h2>Version architecture hexagonale</h2>
-				<div class="container">
-					<div>
-						<p>Ports</p>
-					</div>
-					<div>
-						<p>Adapters</p>
-					</div>
-				</div>
+				<p><img src="assets/ports.jpg" alt="ports" /></p>
 			</section>
 			<section>
 				<h2>Architecture hexagonale</h2>
-				<p>[image hexagone]</p>
+				<p><img src="assets/hexa.png" alt="hexagon" /></p>
 			</section>
 			<section>
-				<h2>Autres avantages</h2>
+				<h2>Avantages</h2>
 				<ul>
 					<li>Choix infrastructure plus tard</li>
 					<li class="fragment">Démo plus rapidement</li>
@@ -77,25 +68,20 @@
 				<h2>Attention</h2>
 				<ul>
 					<li>un peu plus de code à écrire</li>
-					<li class="fragment">outils d’automatisation de code ne fonctionnent pas tous</li>
+					<li class="fragment">outils de génération de code ne fonctionnent pas tous</li>
 				</ul>
 				<p class="fragment">⇒ à réserver aux applications complexes… ou qui vont le devenir</p>
 			</section>
 			<section>
-				<h2>Point de départ</h2>
-				<p>Exemple sous Symfony… car + utilisé et s’y prête bien</p>
-				<p class="fragment">Framework, API, DB, etc. ⇒ détails techniques, remplaçables<br>
-					Code métier ⇒ le plus de valeur</p>
-				<p class="fragment">Rendre hexagonal = séparer “Domain” et “Infrastructure”</p>
+				<h2>Exemple</h2>
+				<p>Avec Symfony… car + utilisé et s’y prête bien</p>
 			</section>
 			<section>
-				<h2>Structure de dossiers</h2>
+				<h2>Arborescence cible</h2>
 				<pre>
 	src
 	  Domain
-	    … (Code métier, uniquement du PHP)
 	  Infrastructure
-	    … (code technique & utilisations dépendances)
 				</pre>
 			</section>
 			<section>
@@ -122,38 +108,42 @@ services:
   Domain\:
     resource: '../src/Domain
     exclude:
-    - '../src/Domain/Entity/'
+      - '../src/Domain/Entity/'
   Infrastructure\:
     resource: '../src/Infrastructure'
     exclude:
-    - '../src/Infrastructure/Symfony/Kernel.php'
+      - '../src/Infrastructure/Symfony/Kernel.php'
   Infrastructure\Symfony\Controller\:
     resource: '../src/Infrastructure/Symfony/Controller/'
     tags: ['controller.service_arguments']
 				</code></pre>
 			</section>
 			<section>
-				<h2>Et maintenant… on code</h2>
+				<h2>Et maintenant… le code</h2>
 				<dl>
 					<dt>Domain</dt>
 					<dd>Organiser en modules métiers<br>
 						Interface pour chaque besoin</dd>
 					<dt>Infrastructure</dt>
-					<dd>Organisation technique (ex: type de classe ou Composant)<br>
+					<dd>Organisation technique<br>
 						Implémenter interfaces du domaine</dd>
 				</dl>
 			</section>
 			<section>
-				<h2>Exemple - Domain</h2>
+				<h2>Exemple : Domain</h2>
 				<p>[image code domaine]</p>
 			</section>
 			<section>
-				<h2>Exemple - Infrastructure</h2>
+				<h2>Exemple : Interface du Domain</h2>
+				<p>[image code domaine]</p>
+			</section>
+			<section>
+				<h2>Exemple : Infrastructure</h2>
 				<p>[image code Infrastructure]</p>
 			</section>
 			<section>
 				<h2>Changer l’implémentation</h2>
-				<p>Ecrire simplement une nouvelle classe qui implémente l’interface !</p>
+				<p>[image autre code implémentant la même interface]</p>
 			</section>
 			<section>
 				<h2>Outils</h2>
@@ -171,13 +161,23 @@ services:
 	  Contexte1
 	    Domain
 	    Infrastructure
+	
 	  Contexte2
 	    Domain
 	    Infrastructure
+	
+	  [...]
+	
 	  Shared
-	    Domain
 	    Infrastructure
 				</pre>
+			</section>
+			<section>
+				<h2>Communication entre contextes</h2>
+				<ul>
+					<li>par API</li>
+					<li>par évènement</li>
+				</ul>
 			</section>
 			<section>
 				<h2>Couches supplémentaires</h2>
@@ -185,13 +185,12 @@ services:
 	src
 	  Contexte1
 	    Application
+
 	    Domain
+
 	    Infrastructure
 	      Symfony
 	      Doctrine
-	    Drivers
-	      Controller
-	      Command
 				</pre>
 			</section>
 			<section>
