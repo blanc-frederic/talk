@@ -88,10 +88,7 @@
 			<section>
 				<h2>Etape 1 : namespaces</h2>
 				<p>Modification autoload dans composer.json</p>
-				<ul>
-					<li>"App\\": "src/" ⇒ "": "src/"</li>
-					<li>"App\\Tests\\": "tests/" ⇒ "Tests\\": "tests/"</li>
-				</ul>
+				<p>[capture autoload]</p>
 			</section>
 			<section>
 				<h2>Etape 2 : déplacement du Kernel</h2>
@@ -128,15 +125,24 @@ services:
 				</code></pre>
 			</section>
 			<section>
-				<h2>Et maintenant… le code</h2>
-				<dl>
-					<dt>Domain</dt>
-					<dd>Organiser en modules métiers<br>
-						Interface pour chaque besoin</dd>
-					<dt>Infrastructure</dt>
-					<dd>Organisation technique<br>
-						Implémenter interfaces du domaine</dd>
-				</dl>
+				<h2>Le code</h2>
+				<div class="container">
+					<div>
+						<p>Domain</p>
+						<ul>
+							<li>Organisation métier</li>
+							<li>Interface pour chaque besoin</li>
+							<li>Tests 100% coverage</li>
+						</ul>
+					</div>
+					<div class="fragment">
+						<p>Infrastructure</p>
+						<ul>
+							<li>Organisation technique</li>
+							<li>Implémenter interfaces</li>
+						</ul>
+					</div>
+				</div>
 			</section>
 			<section>
 				<h2>Exemple : Domain</h2>
@@ -201,6 +207,12 @@ services:
 	      Symfony
 	      Doctrine
 				</pre>
+			</section>
+			<section>
+				<h2>Legacy ?</h2>
+				<p>Créer dossiers Domain et Infrastructure</p>
+				<p>Nouvelles fonctionnalités dans hexagonal</p>
+				<p>Migration progressive pour l'existant</p>
 			</section>
 			<section>
 				<h2>Merci !</h2>
