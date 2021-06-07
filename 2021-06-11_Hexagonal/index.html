@@ -40,7 +40,7 @@
 				<p>- “Ah, si on pouvait utiliser XXX ! ça a l’air trop bien !”</p>
 				<p>- “Oui, mais vu tout ce qu’il faudrait réécrire ...”</p>
 				<p>&nbsp;</p>
-				<p>XXX = nouvelle lib / architecture / service / framework</p>
+				<p>XXX = nouvelle lib / service / framework</p>
 			</section>
 			<section>
 				<h2>Solution universelle</h2>
@@ -75,6 +75,7 @@
 			<section>
 				<h2>Exemple</h2>
 				<p>Avec Symfony… car + utilisé et s’y prête bien</p>
+				<p class="fragment">C'est une <b>des</b> implémentations possibles</p>
 			</section>
 			<section>
 				<h2>Arborescence cible</h2>
@@ -87,10 +88,7 @@
 			<section>
 				<h2>Etape 1 : namespaces</h2>
 				<p>Modification autoload dans composer.json</p>
-				<ul>
-					<li>"App\\": "src/" ⇒ "": "src/"</li>
-					<li>"App\\Tests\\": "tests/" ⇒ "Tests\\": "tests/"</li>
-				</ul>
+				<p><img src="assets/composer.png" alt="changes composer" /></p>
 			</section>
 			<section>
 				<h2>Etape 2 : déplacement du Kernel</h2>
@@ -110,6 +108,7 @@
 				<h2>Etape 3 : configuration services</h2>
 				<pre><code>
 services:
+
   Domain\:
     resource: '../src/Domain'
     exclude:
@@ -126,31 +125,40 @@ services:
 				</code></pre>
 			</section>
 			<section>
-				<h2>Et maintenant… le code</h2>
-				<dl>
-					<dt>Domain</dt>
-					<dd>Organiser en modules métiers<br>
-						Interface pour chaque besoin</dd>
-					<dt>Infrastructure</dt>
-					<dd>Organisation technique<br>
-						Implémenter interfaces du domaine</dd>
-				</dl>
+				<h2>Le code</h2>
+				<div class="container">
+					<div>
+						<p>Domain</p>
+						<ul>
+							<li>Organisation métier</li>
+							<li>Interface pour chaque besoin</li>
+							<li>Tests 100% coverage</li>
+						</ul>
+					</div>
+					<div class="fragment">
+						<p>Infrastructure</p>
+						<ul>
+							<li>Organisation technique</li>
+							<li>Implémenter interfaces</li>
+						</ul>
+					</div>
+				</div>
 			</section>
 			<section>
 				<h2>Exemple : Domain</h2>
-				<p>[image code domaine]</p>
+				<p><img src="assets/domain.png" alt="code domain" /></p>
 			</section>
 			<section>
 				<h2>Exemple : Interface du Domain</h2>
-				<p>[image code domaine]</p>
+				<p><img src="assets/contract.png" alt="contract" /></p>
 			</section>
 			<section>
 				<h2>Exemple : Infrastructure</h2>
-				<p>[image code Infrastructure]</p>
+				<p><img src="assets/infra-1.png" alt="code infra" /></p>
 			</section>
 			<section>
 				<h2>Changer l’implémentation</h2>
-				<p>[image autre code implémentant la même interface]</p>
+				<p><img src="assets/infra-2.png" alt="code infra 2" /></p>
 			</section>
 			<section>
 				<h2>Outils</h2>
@@ -201,7 +209,16 @@ services:
 				</pre>
 			</section>
 			<section>
+				<h2>Legacy ?</h2>
+				<ol>
+					<li>Créer dossiers Domain et Infrastructure</li>
+					<li>Nouvelles fonctionnalités dans hexagonal</li>
+					<li>Migration progressive pour l'existant</li>
+				</ol>
+			</section>
+			<section>
 				<h2>Merci !</h2>
+				<p><a href="https://github.com/blanc-frederic/demo-hexa">github.com/blanc-frederic/demo-hexa</a></p>
 				<p>Des questions ?</p>
 			</section>
 		</div>
