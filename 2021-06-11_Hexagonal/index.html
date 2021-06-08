@@ -149,27 +149,186 @@ services:
 			</section>
 			<section>
 				<h2>Exemple : Domain</h2>
-				<pre><code>
+				<pre><code data-trim data-line-numbers="5-6"><script type="text/template">
+<?php
 
-				</code></pre>
+namespace Domain\Deckbuilding;
+
+use Domain\Contract\DeckRepository;
+use Domain\Contract\IdentifierGenerator;
+use Domain\Entity\Deck;
+
+class CreateDeck
+{
+    private IdentifierGenerator $generator;
+    private DeckRepository $repository;
+
+    public function __construct(
+        IdentifierGenerator $generator,
+        DeckRepository $repository
+    ) {
+        $this->generator = $generator;
+        $this->repository = $repository;
+    }
+
+    public function create(string $name): void
+    {
+        $deck = new Deck(
+            $this->generator->generate(),
+            $name
+        );
+
+        $this->repository->save($deck);
+    }
+}
+				</script></code></pre>
 			</section>
 			<section>
 				<h2>Exemple : Interface du Domain</h2>
-				<pre><code>
-					
-				</code></pre>
+				<pre><code data-trim><script type="text/template">
+<?php
+
+namespace Domain\Contract;
+
+use Domain\Entity\Deck;
+
+interface DeckRepository
+{
+    public function get(string $id): Deck;
+    public function save(Deck $deck): void;
+}
+				</script></code></pre>
 			</section>
 			<section>
 				<h2>Exemple : Infrastructure</h2>
-				<pre><code>
-					
-				</code></pre>
+				<pre><code data-trim data-line-numbers="5-6,10"><script type="text/template">
+<?php
+
+namespace Tests\Domain\Repository;
+
+use Domain\Contract\DeckFinder;
+use Domain\Contract\DeckRepository;
+use Domain\Entity\Deck;
+use OutOfBoundsException;
+
+class MemoryDeckRepository implements DeckRepository, DeckFinder
+{
+    /** @var Deck[] */
+    private array $decks;
+
+    /** @param Deck[] $decks */
+    public function __construct(array $decks = [])
+    {
+        foreach ($decks as $deck) {
+            $this->decks[$deck->getId()] = $deck;
+        }
+    }
+
+    public function get(string $id): Deck
+    {
+        if (! isset($this->decks[$id])) {
+            throw new OutOfBoundsException('No deck found for this id : ' . $id);
+        }
+
+        return $this->decks[$id];
+    }
+
+    public function save(Deck $deck): void
+    {
+        $this->decks[$deck->getId()] = $deck;
+    }
+
+    /** @return Deck[] */
+    public function findAll(): array
+    {
+        return $this->decks;
+    }
+}
+				</script></code></pre>
 			</section>
 			<section>
 				<h2>Changer l’implémentation</h2>
-				<pre><code>
-					
-				</code></pre>
+				<pre><code data-trim data-line-numbers="6-7,11"><script type="text/template">
+<?php
+
+namespace Infrastructure\File\Repository;
+
+use Domain\Contract\CardRepository;
+use Domain\Contract\DeckFinder;
+use Domain\Contract\DeckRepository;
+use Domain\Entity\Deck;
+use OutOfBoundsException;
+
+class FileDeckRepository implements DeckRepository, DeckFinder
+{
+    private string $path;
+    private CardRepository $cardRepository;
+
+    /** @var Deck[] */
+    private array $decks;
+
+    public function __construct(string $path, CardRepository $cardRepository)
+    {
+        $this->path = $path . '/decks';
+        $this->cardRepository = $cardRepository;
+        $this->decks = [];
+    }
+
+    public function get(string $id): Deck
+    {
+        if (isset($this->decks[$id])) {
+            return $this->decks[$id];
+        }
+
+        $filename = $this->path . '/' . $id . '.json';
+        if (! is_file($filename)) {
+            throw new OutOfBoundsException('No deck found for this id : ' . $id);
+        }
+
+        $rawDeck = json_decode(file_get_contents($filename), true);
+        $this->decks[$id] = new Deck($rawDeck['id'], $rawDeck['name']);
+        foreach ($rawDeck['cards'] as $cardNumber) {
+            $this->decks[$id]->add($this->cardRepository->get($cardNumber));
+        }
+
+        return $this->decks[$id];
+    }
+
+    public function save(Deck $deck): void
+    {
+        $this->decks[$deck->getId()] = $deck;
+
+        if (! is_dir($this->path)) {
+            mkdir($this->path, 0755, true);
+        }
+
+        file_put_contents(
+            $this->path . '/' . $deck->getId() . '.json',
+            json_encode([
+                'id' => $deck->getId(),
+                'name' => $deck->getName(),
+                'cards' => array_map(
+                    fn ($card) => $card->getNumber(),
+                    $deck->getCards()
+                ),
+            ])
+        );
+    }
+
+    /** @return Deck[] */
+    public function findAll(): array
+    {
+        foreach (glob($this->path . '/*.json') as $filename) {
+            $id = basename($filename, '.json');
+            if (! isset($this->decks[$id])) {
+                $this->get($id);
+            }
+        }
+
+        return $this->decks;
+    }
+}
+				</script></code></pre>
 			</section>
 			<section>
 				<h2>Outil</h2>
