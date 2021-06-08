@@ -17,3 +17,14 @@ hr {
 .reveal .progress-time div {
     background: #EB6610;
 }
+.reveal .arbo ul {
+    list-style: none;
+    margin-left: 1.5em;
+}
+.reveal .arbo li {
+    background: url(folder.svg) no-repeat;
+    padding: 0 2em;
+}
+.reveal .arbo li.open {
+    background: url(folder-open.svg) no-repeat;
+}

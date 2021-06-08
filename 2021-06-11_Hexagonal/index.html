@@ -44,15 +44,15 @@
 			</section>
 			<section>
 				<h2>Solution universelle</h2>
-				<p><img src="assets/briques.png" alt="briques" /></p>
+				<p><img src="images/briques.png" alt="briques" /></p>
 			</section>
 			<section>
 				<h2>Version architecture hexagonale</h2>
-				<p><img src="assets/ports.jpg" alt="ports" /></p>
+				<p><img src="images/ports.jpg" alt="ports" /></p>
 			</section>
 			<section>
 				<h2>Architecture hexagonale</h2>
-				<p><img src="assets/hexa.png" alt="hexagon" /></p>
+				<p><img src="images/hexa.png" alt="hexagon" /></p>
 			</section>
 			<section>
 				<h2>Avantages</h2>
@@ -79,16 +79,20 @@
 			</section>
 			<section>
 				<h2>Arborescence cible</h2>
-				<pre>
-	src
-	  Domain
-	  Infrastructure
-				</pre>
+				<div class="arbo">
+					<ul>
+						<li class="open">src</li>
+						<ul>
+							<li>Domain</li>
+							<li>Infrastructure</li>
+						</ul>
+					</ul>
+				</div>
 			</section>
 			<section>
 				<h2>Etape 1 : namespaces</h2>
 				<p>Modification autoload dans composer.json</p>
-				<p><img src="assets/composer.png" alt="changes composer" /></p>
+				<p><img src="images/composer.png" alt="changes composer" /></p>
 			</section>
 			<section>
 				<h2>Etape 2 : déplacement du Kernel</h2>
@@ -125,10 +129,9 @@ services:
 				</code></pre>
 			</section>
 			<section>
-				<h2>Le code</h2>
 				<div class="container">
 					<div>
-						<p>Domain</p>
+						<h2>Domain</h2>
 						<ul>
 							<li>Organisation métier</li>
 							<li>Interface pour chaque besoin</li>
@@ -136,7 +139,7 @@ services:
 						</ul>
 					</div>
 					<div class="fragment">
-						<p>Infrastructure</p>
+						<h2>Infrastructure</h2>
 						<ul>
 							<li>Organisation technique</li>
 							<li>Implémenter interfaces</li>
@@ -146,22 +149,30 @@ services:
 			</section>
 			<section>
 				<h2>Exemple : Domain</h2>
-				<p><img src="assets/domain.png" alt="code domain" /></p>
+				<pre><code>
+
+				</code></pre>
 			</section>
 			<section>
 				<h2>Exemple : Interface du Domain</h2>
-				<p><img src="assets/contract.png" alt="contract" /></p>
+				<pre><code>
+					
+				</code></pre>
 			</section>
 			<section>
 				<h2>Exemple : Infrastructure</h2>
-				<p><img src="assets/infra-1.png" alt="code infra" /></p>
+				<pre><code>
+					
+				</code></pre>
 			</section>
 			<section>
 				<h2>Changer l’implémentation</h2>
-				<p><img src="assets/infra-2.png" alt="code infra 2" /></p>
+				<pre><code>
+					
+				</code></pre>
 			</section>
 			<section>
-				<h2>Outils</h2>
+				<h2>Outil</h2>
 				<p><b>Deptrac</b> : <a href="https://github.com/qossmic/deptrac">github.com/qossmic/deptrac</a></p>
 				<p>Règles :</p>
 				<ol>
@@ -171,20 +182,31 @@ services:
 			</section>
 			<section>
 				<h2>Plusieurs contextes</h2>
-				<pre>
-	src
-	  Contexte1
-	    Domain
-	    Infrastructure
-	
-	  Contexte2
-	    Domain
-	    Infrastructure
-	
-	  [...]
-	
-	  Shared
-	    Infrastructure
+				<div class="arbo">
+					<ul>
+						<li class="open">src</li>
+						<ul>
+							<li class="open">[Contexte 1]</li>
+							<ul>
+								<li>Domain</li>
+								<li>Infrastructure</li>
+							</ul>
+						</ul>
+						<ul>
+							<li class="open">[Contexte 2]</li>
+							<ul>
+								<li>Domain</li>
+								<li>Infrastructure</li>
+							</ul>
+						</ul>
+						<ul>
+							<li class="open">Shared</li>
+							<ul>
+								<li>Infrastructure</li>
+							</ul>
+						</ul>
+					</ul>
+				</div>
 				</pre>
 			</section>
 			<section>
@@ -196,22 +218,28 @@ services:
 			</section>
 			<section>
 				<h2>Couches supplémentaires</h2>
-				<pre>
-	src
-	  Contexte1
-	    Application
-
-	    Domain
-
-	    Infrastructure
-	      Symfony
-	      Doctrine
-				</pre>
+				<div class="arbo">
+					<ul>
+						<li class="open">src</li>
+						<ul>
+							<li class="open">[Contexte 1]</li>
+							<ul>
+								<li><b>Application</b></li>
+								<li>Domain</li>
+								<li class="open">Infrastructure</li>
+								<ul>
+									<li><b>Symfony</b></li>
+									<li><b>Doctrine</b></li>
+								</ul>
+							</ul>
+						</ul>
+					</ul>
+				</div>
 			</section>
 			<section>
-				<h2>Legacy ?</h2>
+				<h2>Dans un legacy ?</h2>
 				<ol>
-					<li>Créer dossiers Domain et Infrastructure</li>
+					<li>Créer dossiers <b>Domain</b> et <b>Infrastructure</b></li>
 					<li>Nouvelles fonctionnalités dans hexagonal</li>
 					<li>Migration progressive pour l'existant</li>
 				</ol>
