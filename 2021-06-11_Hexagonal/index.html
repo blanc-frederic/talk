@@ -148,8 +148,8 @@ services:
 				</div>
 			</section>
 			<section>
-				<h2>Exemple : Domain</h2>
-				<pre><code data-trim data-line-numbers="5-6"><script type="text/template">
+				<h2>Exemple Domain</h2>
+				<pre><code data-trim data-line-numbers="3,5-6,15-16"><script type="text/template">
 <?php
 
 namespace Domain\Deckbuilding;
@@ -184,7 +184,7 @@ class CreateDeck
 				</script></code></pre>
 			</section>
 			<section>
-				<h2>Exemple : Interface du Domain</h2>
+				<h2>Exemple Interface du Domain</h2>
 				<pre><code data-trim><script type="text/template">
 <?php
 
@@ -200,8 +200,8 @@ interface DeckRepository
 				</script></code></pre>
 			</section>
 			<section>
-				<h2>Exemple : Infrastructure</h2>
-				<pre><code data-trim data-line-numbers="5-6,10"><script type="text/template">
+				<h2>Exemple Infrastructure Tests</h2>
+				<pre><code data-trim data-line-numbers="3,5-6,10"><script type="text/template">
 <?php
 
 namespace Tests\Domain\Repository;
@@ -247,8 +247,8 @@ class MemoryDeckRepository implements DeckRepository, DeckFinder
 				</script></code></pre>
 			</section>
 			<section>
-				<h2>Changer l’implémentation</h2>
-				<pre><code data-trim data-line-numbers="6-7,11"><script type="text/template">
+				<h2>Exemple Infrastructure</h2>
+				<pre><code data-trim data-line-numbers="3,6-7,11"><script type="text/template">
 <?php
 
 namespace Infrastructure\File\Repository;
@@ -326,6 +326,96 @@ class FileDeckRepository implements DeckRepository, DeckFinder
         }
 
         return $this->decks;
+    }
+}
+				</script></code></pre>
+			</section>
+			<section>
+				<h2>Infrastructure controller</h2>
+				<pre><code data-trim data-line-numbers="3,5-8,14"><script type="text/template">
+<?php
+
+namespace Infrastructure\Symfony\Controller;
+
+use Domain\Deckbuilding\ListDecks;
+use Infrastructure\Symfony\ViewModel\Deck;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+
+class DecksController extends AbstractController
+{
+    private ListDecks $lister;
+
+    public function __construct(ListDecks $lister)
+    {
+        $this->lister = $lister;
+    }
+
+    public function index(): Response
+    {
+        $decks = array_map(
+            fn ($deck) => new Deck(
+                $deck->getId(),
+                $deck->getName(),
+                $deck->getCardsCount(),
+                $deck->isStandard()
+            ),
+            $this->lister->list()
+        );
+
+        return $this->render('deckbuilding/decks.html.twig', ['decks' => $decks]);
+    }
+}
+				</script></code></pre>
+			</section>
+			<section>
+				<h2>Infrastructure CLI</h2>
+				<pre><code data-trim data-line-numbers="3,5-9,15"><script type="text/template">
+<?php
+
+namespace Infrastructure\Symfony\Command;
+
+use Domain\Deckbuilding\ListDecks;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class DeckListCommand extends Command
+{
+    private ListDecks $lister;
+
+    public function __construct(ListDecks $lister)
+    {
+        $this->lister = $lister;
+        parent::__construct('app:deck:list');
+    }
+
+    protected function configure(): void
+    {
+        $this->setDescription('Show all decks');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $decks = array_map(
+            fn ($deck) => [
+                $deck->getId(),
+                $deck->getName(),
+                $deck->getCardsCount(),
+                $deck->isStandard() ? 'Yes' : 'No',
+            ],
+            $this->lister->list()
+        );
+
+        (new Table($output))
+            ->setHeaderTitle('Decks')
+            ->setHeaders(['Id', 'Name', 'Cards', 'Standard'])
+            ->setRows($decks)
+            ->render()
+        ;
+
+        return Command::SUCCESS;
     }
 }
 				</script></code></pre>
@@ -420,7 +510,7 @@ class FileDeckRepository implements DeckRepository, DeckFinder
 			hash: true,
 			transitionSpeed: 'fast',
 			plugins: [RevealHighlight],
-			allottedTime: 30 * 60 * 1000,
+			allottedTime: 35 * 60 * 1000,
 			keyboard: {
 				13: () => {
 					ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
