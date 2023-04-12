@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Apéro PHP du 18/04/2023 - Nommages : réduire sa charge cognitive</title>
+
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/white.css" id="theme">
+		
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<link rel="stylesheet" href="../custom/style.css" id="theme">
+		<link rel="stylesheet" href="assets/afup-toulouse.css" id="safti-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Nommages : réduire sa charge cognitive</h1>
+					<hr/>
+					<p>Apéro PHP 18/04/2023</p>
+				</section>
+				<section>
+					<div class="container">
+						<img src="images/safti-ca-le-fait.jpg" alt="SAFTI ça le fait !" width="40%" />
+						<div>
+							<p><strong><a href="https://www.linkedin.com/in/blanc-frederic/">Fred Blanc</a></strong></p>
+							<p><a href="https://github.com/blanc-frederic">github.com/blanc-frederic</a></p>
+							<p>Lead dev chez <a href="https://www.safti.fr">SAFTI</a></p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h2>Charge cognitive</h2>
+					<p>Définition</p>
+				</section>
+
+				<section>
+					<h2>POI</h2>
+					<p>Principe de moindre surprise</p>
+					<p>Reprise de modèles déjà connus</p>
+					<ul>
+						<li>Design patterns</li>
+						<li>Conventions de codage</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Merci !</h2>
+					<p>Des questions ?</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				transitionSpeed: 'fast',
+				plugins: [ RevealHighlight ],
+				allottedTime: 35 /* slides */ * 60 * 1000,
+				keyboard: {
+					13: () => {
+						ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+					},
+				},
+				dependencies: [
+					{ src: '../custom/plugin/elapsed-time-bar/elapsed-time-bar.js' }
+				]
+			});
+		</script>
+	</body>
+</html>
