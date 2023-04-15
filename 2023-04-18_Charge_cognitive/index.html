@@ -100,25 +100,35 @@
 
 				<section>
 					<h2>Nommages</h2>
-					<p>Classes, Propriétés, Variables ⇒ noms</p>
-					<p>Méthodes, Fonctions ⇒ verbe infinitif</p>
-					<p>Evènement ⇒ participe passé (ex: OrderValidated)</p>
-					<p>Enum ⇒ adjectif ou nom</p>
-					<p>Booléens ⇒ prédicat (ex: isActive ou HasChildren)</p>
+					<ul>
+						<li>En anglais (accorder à la syntaxe du langage)</li>
+						<li>Pas d'abbréviation (sauf connues de tous)</li>
+						<li>Noms prononçables</li>
+						<li>Pas de négation (ex: $notEmpty)</li>
+						<li>Pas facile de trouver un nom ? ⇒ nom temporaire</li>
+					</ul>
 				</section>
 
 				<section>
 					<h2>Nommages</h2>
-					<p>en anglais pour s'accorder à la syntaxe du langage</p>
-					<p>prononcer son code</p>
-					<p>Pas de négation : $unUsed, $notFull</p>
-					<p>Pas facile de trouver des noms ? ⇒ noms temporaires</p>
+					<ul>
+						<li>Classes, Propriétés, Variables ⇒ noms</li>
+						<li>Méthodes, Fonctions ⇒ verbe infinitif</li>
+						<li>Evènement ⇒ participe passé (ex: OrderValidated)</li>
+						<li>Enum ⇒ adjectif ou nom</li>
+						<li>Booléens ⇒ prédicat (ex: isActive ou hasChildren)</li>
+					</ul>
 				</section>
 
 				<section>
 					<h2>Variables</h2>
-					<p>entre 2 et 4 mots</p>
-					<p>avoir un “moule” des noms dans l'équipe, pour les former toujours de la même manière : $maxProductsPerOrder</p>
+					<ul>
+						<li>entre 2 et 4 mots</li>
+						<li>Porter du sens : user1, user2 ⇒ sender, receiver</li>
+						<li>avoir un “moule” des noms (ex: $maxProductsPerOrder)</li>
+						<li>Lettre seule uniquement index de boucle</li>
+						<li>Pas de notation hongroise (iMax, strNom)</li>
+					</ul>
 				</section>
 
 				<section>
@@ -127,23 +137,26 @@
 				</section>
 
 				<section>
-					<p>get = exception if not exists, find = array</p>
+					<h2>Méthodes / fonctions</h2>
+					<ul>
+						<li>Limiter le nombre d'arguments</li>
+						<li>predicat selon retour :
+							<ul>
+								<li>get = exception if not exists</li>
+								<li>find = retour array</li>
+							</ul>
+						</li>
+						<li>ne pas répéter classe : $orderRepository->getOrder($id)</li>
+					</ul>
 				</section>
 
-
 				<section>
-					<p>Porter du sens : user1, user2 ⇒ sender, receiver</p>
-					<p>Pas d'abbréviation (sauf connues de tous)</p>
-					<p>Pas de notation hongroise (iMax, strNom)</p>
-					<p>Lettre seule uniquement index de boucle</p>
-					<p>ne pas répéter dans le nom méthode son retour, ni ses paramètres : getMandatById($id): Mandat</p>
 					<p>Supprimer suffixes inutiles : Service, Exception, Interface …</p>
 					<p>on associe ce qui est proche, ne pas choisir des noms qui se ressemblent trop</p>
 					<p>time ⇒ seconds, timestamp, date …</p>
 					<p>pas d'humour, on est là pour être compris</p>
 					<p>pas de mystère, on écrit pas un polar</p>
 				</section>
-
 
 				<section>
 					<h2>Aider les autres</h2>
