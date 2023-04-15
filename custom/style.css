@@ -4,6 +4,8 @@
 .reveal .controls .navigate-up { bottom: 4.4em; }
 .reveal .controls .navigate-down { padding-bottom: 3.4em; }
 
+.reveal img { margin: 0; }
+
 .reveal .container { display: flex; }
 .container div { margin: 0 1em; }
 

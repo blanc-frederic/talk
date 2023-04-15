@@ -46,8 +46,8 @@
 
 				<section>
 					<h2>Alors pourquoi c'est si difficile ?</h2>
-					<p>Résolution de problèmes et logique : activités mathématiques</p>
-					<p>Lecture de code et analyse : activités linguistiques</p>
+					<p>Résolution de problèmes et logique = activités <strong>mathématiques</strong></p>
+					<p>Lecture de code et analyse = activités <strong>linguistiques</strong></p>
 				</section>
 
 				<section>
@@ -57,58 +57,98 @@
 
 				<section>
 					<h2>Comment aider le cerveau ?</h2>
-					<p>Complexité légitime : découper</p>
-					<p>Complexité accidentelle : supprimer ou masquer</p>
+					<ul>
+						<li>Complexité <strong>nécessaire</strong> (problème) : découper</li>
+						<li>Complexité <strong>accidentelle</strong> (solution) : supprimer ou masquer</li>
+					</ul>
+					<p>⇒ Ecrire pour son futur lecteur</p>
 				</section>
 
 				<section>
 					<h2>Aider la mémoire court terme</h2>
-					<p>Identifier rapidement les structures et points d'infos</p>
-					<p>Renommer quand on trébuche</p>
+					<ol>
+						<li>Utiliser structures connues</li>
+						<li>Conventions (PSR-12 !)</li>
+						<li>Travailler indicateurs (commentaires, noms)</li>
+						<li>Supprimer pollution (code mort ou commenté, fautes, décors, ...)</li>
+						<li>Limiter ternaires et fonctions anonymes</li>
+					</ol>
 				</section>
-
+				
 				<section>
 					<h2>Aider la mémoire de travail</h2>
-					<p>Découper en morceaux plus digestes</p>
-					<p>get = exception if not exists, find = array</p>
+					<ol>
+						<li>Principe de "moindre surprise"</li>
+						<li>Découper</li>
+						<li>Activer mémoire long-terme</li>
+						<li>Eviter d'empiler</li>
+						<li>Renommer dès l'analyse</li>
+					</ol>
 				</section>
-
+				
 				<section>
 					<h2>Aider la mémoire long terme</h2>
-					<p>Principe de la moindre surprise</p>
-					<p>Retrouver facilement des schéma connus</p>
+					<ol>
+						<li>Exercices sur design pattern (un par un !)</li>
+						<li>Ecrire des docs</li>
+						<li>Lire du code "bien écrit" (open source)</li>
+						<li>Lire une méthode puis la réécrire de mémoire</li>
+						<li>Développer :)</li>
+					</ol>
+					<p>Astuce bonus : dormir</p>
 				</section>
 
 				<section>
-					<h2>Ne pas polluer sa réflexion</h2>
+					<h2>Nommages</h2>
+					<p>Classes, Propriétés, Variables ⇒ noms</p>
+					<p>Méthodes, Fonctions ⇒ verbe infinitif</p>
+					<p>Evènement ⇒ participe passé (ex: OrderValidated)</p>
+					<p>Enum ⇒ adjectif ou nom</p>
+					<p>Booléens ⇒ prédicat (ex: isActive ou HasChildren)</p>
+				</section>
+
+				<section>
+					<h2>Nommages</h2>
+					<p>en anglais pour s'accorder à la syntaxe du langage</p>
+					<p>prononcer son code</p>
+					<p>Pas de négation : $unUsed, $notFull</p>
 					<p>Pas facile de trouver des noms ? ⇒ noms temporaires</p>
 				</section>
 
 				<section>
-					<h2>Aider les autres</h2>
-					<p>API, message broker, exports, ...</p>
-					<p>Communiquer sur des noms neutres</p>
+					<h2>Variables</h2>
+					<p>entre 2 et 4 mots</p>
+					<p>avoir un “moule” des noms dans l'équipe, pour les former toujours de la même manière : $maxProductsPerOrder</p>
 				</section>
 
 				<section>
-					<p>Pas de négation : $unUsed, $notFull</p>
-					<p>en anglais pour s'accorder à la syntaxe du langage</p>
-					<p>prononcer son code</p>
+					<h2>Enum</h2>
+					<p>ordonner chronologiquement, logiquement ou alphabétiquement les valeurs</p>
 				</section>
+
+				<section>
+					<p>get = exception if not exists, find = array</p>
+				</section>
+
 
 				<section>
 					<p>Porter du sens : user1, user2 ⇒ sender, receiver</p>
 					<p>Pas d'abbréviation (sauf connues de tous)</p>
 					<p>Pas de notation hongroise (iMax, strNom)</p>
 					<p>Lettre seule uniquement index de boucle</p>
+					<p>ne pas répéter dans le nom méthode son retour, ni ses paramètres : getMandatById($id): Mandat</p>
+					<p>Supprimer suffixes inutiles : Service, Exception, Interface …</p>
+					<p>on associe ce qui est proche, ne pas choisir des noms qui se ressemblent trop</p>
+					<p>time ⇒ seconds, timestamp, date …</p>
+					<p>pas d'humour, on est là pour être compris</p>
+					<p>pas de mystère, on écrit pas un polar</p>
 				</section>
 
+
 				<section>
-					<p>Classes, Propriétés, Variables : noms</p>
-					<p>Méthodes, Fonctions : verbe infinitif</p>
-					<p>Event : participe passé ()</p>
-					<p>Enum : adjectif ou nom</p>
-					<p>Booléens : prédicat (isActive ou HasChildren)</p>
+					<h2>Aider les autres</h2>
+					<p>API, message broker, exports, ... :</p>
+					<p>Communiquer sur des noms neutres</p>
 				</section>
 
 				<section>
@@ -132,7 +172,7 @@
 				hash: true,
 				transitionSpeed: 'fast',
 				plugins: [ RevealHighlight ],
-				allottedTime: 35 /* slides */ * 60 * 1000,
+				allottedTime: 30 /* slides */ * 60 * 1000,
 				keyboard: {
 					13: () => {
 						ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
