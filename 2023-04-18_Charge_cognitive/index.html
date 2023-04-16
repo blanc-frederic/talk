@@ -40,13 +40,13 @@
 				</section>
 
 				<section>
-					<h2>Ecrire du code VS Lire du code</h2>
+					<h2>Deux activités différentes</h2>
 					<ul>
 						<li>Résolution de problèmes ⇒ créativité et <strong>mathématiques</strong></li>
 						<li>Compréhension du code ⇒ communication et <strong>linguistique</strong></li>
 					</ul>
-					<p>Deux activités différentes, donc aptitudes différentes...<br/>
-						et pas valorisées à la même hauteur</p>
+					<p>Activités différentes, donc aptitudes différentes<br/>
+						... et pas valorisées à la même hauteur</p>
 				</section>
 
 				<section>
@@ -71,18 +71,16 @@
 				<section>
 					<h2>Aider la mémoire court terme</h2>
 					<ol>
-						<li>Utiliser structures connues</li>
+						<li>Structurer son code selon les standards</li>
 						<li>Conventions (PSR-12 !)</li>
 						<li>Bien choisir repères (commentaires, <strong>noms</strong>)</li>
 						<li>Supprimer pollution (code mort ou commenté, fautes, décors, ...)</li>
-						<li>Limiter ternaires et fonctions anonymes</li>
 					</ol>
 				</section>
 				
 				<section>
 					<h2>Aider la mémoire de travail</h2>
 					<ol>
-						<li>Principe de "moindre surprise"</li>
 						<li>Découper</li>
 						<li>Activer mémoire long-terme</li>
 						<li>Eviter d'empiler</li>
@@ -95,8 +93,7 @@
 					<ol>
 						<li>Exercices sur design pattern (un par un !)</li>
 						<li>Ecrire des docs</li>
-						<li>Lire du code "bien écrit" (open source)</li>
-						<li>Lire une méthode puis la réécrire de mémoire</li>
+						<li>Lire du code (open source)</li>
 						<li>Développer :)</li>
 					</ol>
 				</section>
@@ -109,7 +106,7 @@
 				<section>
 					<h2>Obstacles à la compréhension</h2>
 					<ol>
-						<li>No comments or insufficient comments</li>
+						<li>(No comments or insufficient comments)</li>
 						<li><strong>Meaningless classes / methods / variables names</strong></li>
 						<li>Large number of lines of code in a class / method</li>
 						<li>Unconsistent coding styles</li>
@@ -134,12 +131,12 @@
 						<li>En anglais (comme PHP)</li>
 						<li>Noms prononçables</li>
 						<li>Donner des indices (Design Pattern, utilité, ...)</li>
-						<li>Noms temporaires si pas d'inspiration</li>
+						<li>Utiliser des termes issus du métier</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2>Nommages selon type</h2>
+					<h2>Conventions selon type</h2>
 					<ul>
 						<li>Classes, Propriétés, Variables ⇒ noms</li>
 						<li>Méthodes, Fonctions ⇒ verbe infinitif</li>
@@ -150,33 +147,18 @@
 				</section>
 				
 				<section>
-					<h2>Classes</h2>
-					<ul>
-						<li>Supprimer suffixes inutiles. Exemples :
-							<ul>
-								<li>Connection<strong>Service</strong> ⇒ Connection</li>
-								<li>UserNotFound<strong>Exception</strong> ⇒ UserNotFound</li>
-								<li>Reader<strong>Interface</strong> ⇒ Reader</li>
-							</ul>
-						</li>
-						<li>Utiliser des termes issus du métier</li>
-					</ul>
-				</section>
-
-				<section>
 					<h2>Méthodes / fonctions</h2>
 					<ul>
 						<li>Maxi 5 arguments</li>
-						<li>Predicat selon retour :
+						<li>Arguments aident pour les renseigner (ex: add(int $seconds))</li>
+						<li>Prédicat portant du sens :
 							<ul>
 								<li>getXxx : un seul élément, exception si non trouvé</li>
 								<li>findByXxx : array</li>
 							</ul>
 						</li>
-						<li>Ne pas répéter classe (ex: $orderRepository->getOrder($id))</li>
-						<li>Arguments aident pour les renseigner (ex: add(int $seconds))</li>
-						<li>Longueur : public = nom court, private = nom long</li>
 					</ul>
+					<p>Longueur : public = nom court, private = nom long</p>
 				</section>
 
 				<section>
@@ -184,10 +166,9 @@
 					<ul>
 						<li>Maxi 4 mots</li>
 						<li>Porter du sens (ex: $user1, $user2 ⇒ $sender, $receiver)</li>
-						<li>Avoir un “moule à noms” (ex: $maxProductsPerOrder)</li>
 						<li>Pas de notation hongroise (ex: $iMax, $strNom)</li>
-						<li>Longueur : portée grande = nom long, portée courte = nom court</li>
 					</ul>
+					<p>Longueur : portée grande = nom long, portée courte = nom court</p>
 				</section>
 
 				<section>
