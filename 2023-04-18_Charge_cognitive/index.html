@@ -39,8 +39,8 @@
 				</section>
 
 				<section>
-					<p>En moyenne, nous passons <strong>58%</strong> de notre temps</p>
-					<p>de développement à la compréhension du code</p>
+					<p>En moyenne, nous passons <strong>58%</strong> de notre temps<br />
+					de développement à la compréhension du code</p>
 					<p style="text-align:right"><a href="https://www.researchgate.net/publication/318811113_Measuring_Program_Comprehension_A_Large-Scale_Field_Study_with_Professionals"><em>Xia and al. TSE.2017.2734091</em></a></p>
 				</section>
 
@@ -99,13 +99,30 @@
 				</section>
 
 				<section>
-					<h2>Nommages</h2>
+					<h2>Nommage</h2>
+					<p>Les noms sont des repères qui simplifient l'analyse du code</p>
+					<p>Mais...</p>
+					<p><em>There are only two hard things in Computer Science: cache invalidation and naming things.
+						-- Phil Karlton</em></p>
+				</section>
+
+				<section>
+					<h2>Nommages : à ne pas faire</h2>
 					<ul>
-						<li>En anglais (accorder à la syntaxe du langage)</li>
+						<li>Pas d'humour</li>
+						<li>Pas de mystère</li>
 						<li>Pas d'abbréviation (sauf connues de tous)</li>
-						<li>Noms prononçables</li>
 						<li>Pas de négation (ex: $notEmpty)</li>
-						<li>Pas facile de trouver un nom ? ⇒ nom temporaire</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Nommages : à faire</h2>
+					<ul>
+						<li>En anglais (comme PHP)</li>
+						<li>Noms prononçables</li>
+						<li>Donner des indices (Design Pattern, utilité, ...)</li>
+						<li>Noms temporaires si pas d'inspiration</li>
 					</ul>
 				</section>
 
@@ -119,43 +136,36 @@
 						<li>Booléens ⇒ prédicat (ex: isActive ou hasChildren)</li>
 					</ul>
 				</section>
+				
+				<section>
+					<h2>Classes</h2>
+					<p>Supprimer suffixes inutiles : Service, Exception, Interface …</p>
+				</section>
 
 				<section>
 					<h2>Variables</h2>
 					<ul>
-						<li>entre 2 et 4 mots</li>
-						<li>Porter du sens : user1, user2 ⇒ sender, receiver</li>
-						<li>avoir un “moule” des noms (ex: $maxProductsPerOrder)</li>
-						<li>Lettre seule uniquement index de boucle</li>
-						<li>Pas de notation hongroise (iMax, strNom)</li>
+						<li>Maxi 4 mots</li>
+						<li>Porter du sens (ex: $user1, $user2 ⇒ $sender, $receiver)</li>
+						<li>Avoir un “moule à noms” (ex: $maxProductsPerOrder)</li>
+						<li>Lettre seule : uniquement index de boucle</li>
+						<li>Pas de notation hongroise (ex: $iMax, $strNom)</li>
 					</ul>
-				</section>
-
-				<section>
-					<h2>Enum</h2>
-					<p>ordonner chronologiquement, logiquement ou alphabétiquement les valeurs</p>
 				</section>
 
 				<section>
 					<h2>Méthodes / fonctions</h2>
 					<ul>
-						<li>Limiter le nombre d'arguments</li>
-						<li>predicat selon retour :
+						<li>Maxi 5 arguments</li>
+						<li>Predicat selon retour :
 							<ul>
-								<li>get = exception if not exists</li>
-								<li>find = retour array</li>
+								<li>getXxx = exception si non trouvé, Xxx est une classe</li>
+								<li>findByXxx = retour array, Xxx est un critère</li>
 							</ul>
 						</li>
-						<li>ne pas répéter classe : $orderRepository->getOrder($id)</li>
+						<li>Ne pas répéter classe (ex: $orderRepository->getOrder($id))</li>
+						<li>Paramètres, donner infos si pas de type (ex: $seconds, $timestamp)</li>
 					</ul>
-				</section>
-
-				<section>
-					<p>Supprimer suffixes inutiles : Service, Exception, Interface …</p>
-					<p>on associe ce qui est proche, ne pas choisir des noms qui se ressemblent trop</p>
-					<p>time ⇒ seconds, timestamp, date …</p>
-					<p>pas d'humour, on est là pour être compris</p>
-					<p>pas de mystère, on écrit pas un polar</p>
 				</section>
 
 				<section>
