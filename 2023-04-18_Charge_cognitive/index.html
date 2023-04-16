@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Apéro PHP du 18/04/2023 - Nommages : réduire sa charge cognitive</title>
+
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/white.css" id="theme">
+		
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<link rel="stylesheet" href="../custom/style.css" id="theme">
+		<link rel="stylesheet" href="assets/afup-toulouse.css" id="safti-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Nommages : réduire sa charge cognitive</h1>
+					<hr/>
+					<p>Apéro PHP 18/04/2023</p>
+				</section>
+				<section>
+					<div class="container">
+						<img src="images/safti-ca-le-fait.jpg" alt="SAFTI ça le fait !" width="40%" />
+						<div>
+							<p><strong><a href="https://www.linkedin.com/in/blanc-frederic/">Fred Blanc</a></strong><br />
+							<a href="https://github.com/blanc-frederic">github.com/blanc-frederic</a></p>
+							<p>Lead dev chez <a href="https://www.safti.fr">SAFTI</a></p>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<img src="images/repartition-activite.png" alt="En moyenne, 58% du temps pour compréhension du code"/>
+					<p style="text-align:right"><a href="https://www.researchgate.net/publication/318811113_Measuring_Program_Comprehension_A_Large-Scale_Field_Study_with_Professionals"><em>Xia and al. TSE.2017.2734091</em></a></p>
+				</section>
+
+				<section>
+					<h2>Deux activités différentes</h2>
+					<ul>
+						<li>Résolution de problèmes ⇒ créativité et <strong>mathématiques</strong></li>
+						<li>Compréhension du code ⇒ communication et <strong>linguistique</strong></li>
+					</ul>
+					<p>Activités différentes, donc aptitudes différentes<br/>
+						... et pas valorisées à la même hauteur</p>
+				</section>
+
+				<section>
+					<img src="images/tout-cramer.png" alt="Il faudrait refacto ces classes... bah on va tout cramer et refaire" />
+				</section>
+
+				<section>
+					<h2>Compréhension du code</h2>
+					<img src="images/brain.png" alt="" />
+				</section>
+
+				<section>
+					<h2>Comment aider le cerveau ?</h2>
+					<p>Réduire la complexité</p>
+					<ul>
+						<li>Complexité <strong>nécessaire</strong> (problème) : découper</li>
+						<li>Complexité <strong>accidentelle</strong> (solution) : supprimer ou masquer</li>
+					</ul>
+					<p>⇒ Ecrire pour son futur lecteur</p>
+				</section>
+
+				<section>
+					<h2>Aider la mémoire court terme</h2>
+					<ol>
+						<li>Structurer son code selon les standards</li>
+						<li>Conventions (PSR-12 !)</li>
+						<li>Bien choisir repères (commentaires, <strong>noms</strong>)</li>
+						<li>Supprimer pollution (code mort ou commenté, fautes, décors, ...)</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h2>Aider la mémoire de travail</h2>
+					<ol>
+						<li>Découper</li>
+						<li>Activer mémoire long-terme</li>
+						<li>Eviter d'empiler</li>
+						<li><strong>Renommer</strong> dès l'analyse</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h2>Aider la mémoire long terme</h2>
+					<ol>
+						<li>Exercices sur design pattern (un par un !)</li>
+						<li>Ecrire des docs</li>
+						<li>Lire du code (open source)</li>
+						<li>Développer :)</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Astuce bonus</h2>
+					<img src="images/sleeping-coder.jpg" alt="dormir"/>
+				</section>
+
+				<section>
+					<h2>Obstacles à la compréhension</h2>
+					<ol>
+						<li>(No comments or insufficient comments)</li>
+						<li><strong>Meaningless classes / methods / variables names</strong></li>
+						<li>Large number of lines of code in a class / method</li>
+						<li>Unconsistent coding styles</li>
+						<li>Navigating inheritance hierarchies</li>
+					</ol>
+					<p style="text-align:right"><a href="https://www.researchgate.net/publication/318811113_Measuring_Program_Comprehension_A_Large-Scale_Field_Study_with_Professionals"><em>Xia and al. TSE.2017.2734091</em></a></p>
+				</section>
+
+				<section>
+					<h2>Nommages : à ne pas faire</h2>
+					<ul>
+						<li>Pas d'humour</li>
+						<li>Pas de mystère</li>
+						<li>Pas d'abbréviation (sauf connues de tous)</li>
+						<li>Pas de négation (ex: $notEmpty)</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Nommages : à faire</h2>
+					<ul>
+						<li>En anglais (comme PHP)</li>
+						<li>Noms prononçables</li>
+						<li>Donner des indices (Design Pattern, utilité, ...)</li>
+						<li>Utiliser des termes issus du métier</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Conventions selon type</h2>
+					<ul>
+						<li>Classes, Propriétés, Variables ⇒ noms</li>
+						<li>Méthodes, Fonctions ⇒ verbe infinitif</li>
+						<li>Evènement ⇒ participe passé (ex: OrderValidated)</li>
+						<li>Valeurs d'Enum ⇒ adjectif ou nom</li>
+						<li>Booléens ⇒ prédicat (ex: isActive ou hasChildren)</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Méthodes / fonctions</h2>
+					<ul>
+						<li>Maxi 5 arguments</li>
+						<li>Arguments aident pour les renseigner (ex: add(int $seconds))</li>
+						<li>Prédicat portant du sens :
+							<ul>
+								<li>getXxx : un seul élément, exception si non trouvé</li>
+								<li>findByXxx : array</li>
+							</ul>
+						</li>
+					</ul>
+					<p>Longueur : public = nom court, private = nom long</p>
+				</section>
+
+				<section>
+					<h2>Variables</h2>
+					<ul>
+						<li>Maxi 4 mots</li>
+						<li>Porter du sens (ex: $user1, $user2 ⇒ $sender, $receiver)</li>
+						<li>Pas de notation hongroise (ex: $iMax, $strNom)</li>
+					</ul>
+					<p>Longueur : portée grande = nom long, portée courte = nom court</p>
+				</section>
+
+				<section>
+					<h2>Aider les autres</h2>
+					<p>API, message broker, exports, ... :</p>
+					<p>Communiquer sur des noms neutres</p>
+				</section>
+
+				<section>
+					<h2>Merci !</h2>
+					<p>Des questions ?</p>
+					<p style="text-align:left">Sources
+					<ul>
+						<li>Clean code - Robert C. Martin</li>
+						<li>The programmer's brain - Felienne Hermans</li>
+					</ul></p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				transitionSpeed: 'fast',
+				plugins: [ RevealHighlight ],
+				allottedTime: 30 /* slides */ * 60 * 1000,
+				keyboard: {
+					13: () => {
+						ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+					},
+				},
+				dependencies: [
+					{ src: '../custom/plugin/elapsed-time-bar/elapsed-time-bar.js' }
+				]
+			});
+		</script>
+	</body>
+</html>
