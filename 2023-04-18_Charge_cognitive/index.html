@@ -35,28 +35,32 @@
 				</section>
 
 				<section>
-					<img src="images/tout-cramer.png" alt="Il faudrait refacto ces classes... bah on va tout cramer et refaire" />
-				</section>
-
-				<section>
-					<p>En moyenne, nous passons <strong>58%</strong> de notre temps<br />
-					de développement à la compréhension du code</p>
+					<img src="images/repartition-activite.png" alt="En moyenne, 58% du temps pour compréhension du code"/>
 					<p style="text-align:right"><a href="https://www.researchgate.net/publication/318811113_Measuring_Program_Comprehension_A_Large-Scale_Field_Study_with_Professionals"><em>Xia and al. TSE.2017.2734091</em></a></p>
 				</section>
 
 				<section>
-					<h2>Alors pourquoi c'est si difficile ?</h2>
-					<p>Résolution de problèmes et logique = activités <strong>mathématiques</strong></p>
-					<p>Lecture de code et analyse = activités <strong>linguistiques</strong></p>
+					<h2>Ecrire du code VS Lire du code</h2>
+					<ul>
+						<li>Résolution de problèmes ⇒ créativité et <strong>mathématiques</strong></li>
+						<li>Compréhension du code ⇒ communication et <strong>linguistique</strong></li>
+					</ul>
+					<p>Deux activités différentes, donc aptitudes différentes...<br/>
+						et pas valorisées à la même hauteur</p>
 				</section>
 
 				<section>
-					<h2>Que se passe t'il quand on lit du code ?</h2>
+					<img src="images/tout-cramer.png" alt="Il faudrait refacto ces classes... bah on va tout cramer et refaire" />
+				</section>
+
+				<section>
+					<h2>Compréhension du code</h2>
 					<img src="images/brain.png" alt="" />
 				</section>
 
 				<section>
 					<h2>Comment aider le cerveau ?</h2>
+					<p>Réduire la complexité</p>
 					<ul>
 						<li>Complexité <strong>nécessaire</strong> (problème) : découper</li>
 						<li>Complexité <strong>accidentelle</strong> (solution) : supprimer ou masquer</li>
@@ -69,7 +73,7 @@
 					<ol>
 						<li>Utiliser structures connues</li>
 						<li>Conventions (PSR-12 !)</li>
-						<li>Travailler indicateurs (commentaires, noms)</li>
+						<li>Bien choisir repères (commentaires, <strong>noms</strong>)</li>
 						<li>Supprimer pollution (code mort ou commenté, fautes, décors, ...)</li>
 						<li>Limiter ternaires et fonctions anonymes</li>
 					</ol>
@@ -82,7 +86,7 @@
 						<li>Découper</li>
 						<li>Activer mémoire long-terme</li>
 						<li>Eviter d'empiler</li>
-						<li>Renommer dès l'analyse</li>
+						<li><strong>Renommer</strong> dès l'analyse</li>
 					</ol>
 				</section>
 				
@@ -95,15 +99,23 @@
 						<li>Lire une méthode puis la réécrire de mémoire</li>
 						<li>Développer :)</li>
 					</ol>
-					<p>Astuce bonus : dormir</p>
 				</section>
 
 				<section>
-					<h2>Nommage</h2>
-					<p>Les noms sont des repères qui simplifient l'analyse du code</p>
-					<p>Mais...</p>
-					<p><em>There are only two hard things in Computer Science: cache invalidation and naming things.
-						-- Phil Karlton</em></p>
+					<h2>Astuce bonus</h2>
+					<img src="images/sleeping-coder.jpg" alt="dormir"/>
+				</section>
+
+				<section>
+					<h2>Obstacles à la compréhension</h2>
+					<ol>
+						<li>No comments or insufficient comments</li>
+						<li><strong>Meaningless classes / methods / variables names</strong></li>
+						<li>Large number of lines of code in a class / method</li>
+						<li>Unconsistent coding styles</li>
+						<li>Navigating inheritance hierarchies</li>
+					</ol>
+					<p style="text-align:right"><a href="https://www.researchgate.net/publication/318811113_Measuring_Program_Comprehension_A_Large-Scale_Field_Study_with_Professionals"><em>Xia and al. TSE.2017.2734091</em></a></p>
 				</section>
 
 				<section>
@@ -127,29 +139,27 @@
 				</section>
 
 				<section>
-					<h2>Nommages</h2>
+					<h2>Nommages selon type</h2>
 					<ul>
 						<li>Classes, Propriétés, Variables ⇒ noms</li>
 						<li>Méthodes, Fonctions ⇒ verbe infinitif</li>
 						<li>Evènement ⇒ participe passé (ex: OrderValidated)</li>
-						<li>Enum ⇒ adjectif ou nom</li>
+						<li>Valeurs d'Enum ⇒ adjectif ou nom</li>
 						<li>Booléens ⇒ prédicat (ex: isActive ou hasChildren)</li>
 					</ul>
 				</section>
 				
 				<section>
 					<h2>Classes</h2>
-					<p>Supprimer suffixes inutiles : Service, Exception, Interface …</p>
-				</section>
-
-				<section>
-					<h2>Variables</h2>
 					<ul>
-						<li>Maxi 4 mots</li>
-						<li>Porter du sens (ex: $user1, $user2 ⇒ $sender, $receiver)</li>
-						<li>Avoir un “moule à noms” (ex: $maxProductsPerOrder)</li>
-						<li>Lettre seule : uniquement index de boucle</li>
-						<li>Pas de notation hongroise (ex: $iMax, $strNom)</li>
+						<li>Supprimer suffixes inutiles. Exemples :
+							<ul>
+								<li>Connection<strong>Service</strong> ⇒ Connection</li>
+								<li>UserNotFound<strong>Exception</strong> ⇒ UserNotFound</li>
+								<li>Reader<strong>Interface</strong> ⇒ Reader</li>
+							</ul>
+						</li>
+						<li>Utiliser des termes issus du métier</li>
 					</ul>
 				</section>
 
@@ -159,12 +169,24 @@
 						<li>Maxi 5 arguments</li>
 						<li>Predicat selon retour :
 							<ul>
-								<li>getXxx = exception si non trouvé, Xxx est une classe</li>
-								<li>findByXxx = retour array, Xxx est un critère</li>
+								<li>getXxx : un seul élément, exception si non trouvé</li>
+								<li>findByXxx : array</li>
 							</ul>
 						</li>
 						<li>Ne pas répéter classe (ex: $orderRepository->getOrder($id))</li>
-						<li>Paramètres, donner infos si pas de type (ex: $seconds, $timestamp)</li>
+						<li>Arguments aident pour les renseigner (ex: add(int $seconds))</li>
+						<li>Longueur : public = nom court, private = nom long</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Variables</h2>
+					<ul>
+						<li>Maxi 4 mots</li>
+						<li>Porter du sens (ex: $user1, $user2 ⇒ $sender, $receiver)</li>
+						<li>Avoir un “moule à noms” (ex: $maxProductsPerOrder)</li>
+						<li>Pas de notation hongroise (ex: $iMax, $strNom)</li>
+						<li>Longueur : portée grande = nom long, portée courte = nom court</li>
 					</ul>
 				</section>
 
