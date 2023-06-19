@@ -1,0 +1,39 @@
+.reveal h1 {
+    color: #2b3e74;
+}
+.reveal h2 {
+    color: #3C4858;
+}
+.reveal h3 {
+    color: #007cc4;
+}
+.reveal h4 {
+    color: #36a7df;
+}
+hr {
+    border-color: #36a7df;
+}
+.reveal {
+    background: url('afup-toulouse.svg') no-repeat 1em 1em;
+    color: #6B6C6A;
+}
+.reveal .controls, .reveal a, .reveal a:hover { 
+    color: #007cc4;
+}
+.reveal .progress {
+    color: #36a7df;
+    height: 0.4em;
+}
+.reveal .progress-time div {
+    background: #36a7df;
+}
+
+.reveal .bureau img {
+    width: 80px; height: 80px;
+    margin: 5px 15px;
+    vertical-align: middle;
+}
+.reveal table td, .reveal table th {
+    border: 0 none;
+    vertical-align: middle;
+}

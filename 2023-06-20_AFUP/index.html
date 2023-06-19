@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Apéro PHP #2 du 20/06/2023 - Gros projet, petite équipe</title>
+
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/white.css" id="theme">
+		
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<link rel="stylesheet" href="../custom/style.css" id="theme">
+		<link rel="stylesheet" href="assets/afup-toulouse.css" id="safti-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="images/afup-toulouse.png" alt="AFUP Toulouse" />
+					<h1>Meetup <br/>Juin 2023</h1>
+					<img src="images/familywebdiffusion.png" alt="Sponsor : Family Web Diffusion" />
+				</section>
+
+				<section>
+					<h2><img src="images/afup.png" alt="afup - Association Française des utilisateurs de PHP" /></h2>
+					<ul>
+						<li>Créée en 2001 pour promouvoir <b>PHP</b> et son écosystème</li>
+						<li>Evènements : Forum PHP (automne) et AFUP Day (printemps)</li>
+						<li>Antennes locales</li>
+						<li>Baromètre des salaires</li>
+						<li>Mentorat</li>
+					</ul>
+					<p><a href="https://afup.org">https://afup.org</a></p>
+				</section>
+
+				<section>
+					<h2><img src="images/afup-toulouse.png" alt="afup Toulouse" /></h2>
+					<ul>
+						<li>4 à 5 meetup par an 🍻</li>
+						<li>Nous cherchons :
+							<ul>
+								<li>Speakers ! (accompagnement possible)</li>
+								<li>Locaux</li>
+								<li>Sponsoring (manger && boire)</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Evènements à venir</h2>
+					<ul>
+						<li>22/06 - Meetup Sylius Toulouse</li>
+						<li>12 et 13/10 - Forum PHP (Paris)</li>
+						<li>16/11 - DevFest Toulouse</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Aujourd'hui</h2>
+					<ul>
+						<li>Election du bureau antenne Toulouse</li>
+						<li><b>Gros projet, petite équipe</b> - Stéphanie Trumtel et Kévin Gonella</li>
+						<li><b>Fonctionnalités précognitives de Laravel</b> - Romain Gonçalves</li>
+						<li><b>Apéro</b> offert par Family Web Diffusion</li>
+					</ul>
+					<img src="images/familywebdiffusion.png" alt="Sponsor : Family Web Diffusion" />
+				</section>
+
+				<section>
+					<h2>Candidats bureau Toulouse</h2>
+					<table class="bureau">
+						<tr><th>Coordinateur :</th><td><img src="images/romain.png" /> Romain Gonçalves</td></tr>
+						<tr><th>Modérateur :</th><td>Fred Blanc <img src="images/fred.png" /></td></tr>
+						<tr><th>Vice-coordinateur :</th><td><img src="images/dylan.png" />Dylan Ballandras</td></tr>
+						<tr><th>Vice-modératrice :</th><td>Iris Laumon <img src="images/iris.png" /></td></tr>
+						<tr><th>Membres :</th><td>Estelle Le Cam, Guillaume Marceteau</td></tr>
+					</table>
+				</section>
+			</div>
+		</div>
+
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				transitionSpeed: 'fast',
+				plugins: [ RevealHighlight ],
+				allottedTime: 10 /* slides */ * 60 * 1000,
+				keyboard: {
+					13: () => {
+						ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+					},
+				},
+				dependencies: [
+					{ src: '../custom/plugin/elapsed-time-bar/elapsed-time-bar.js' }
+				]
+			});
+		</script>
+	</body>
+</html>
