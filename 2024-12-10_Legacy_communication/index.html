@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Apéro PHP du 10/12/2024 - Symfony : communiquer avec son Legacy</title>
+
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/white.css" id="theme">
+		
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<link rel="stylesheet" href="../custom/style.css" id="theme">
+		<link rel="stylesheet" href="../custom/afup-toulouse.css" id="afup-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Symfony : communiquer avec son Legacy</h1>
+					<hr/>
+					<p>Apéro PHP 10/12/2024</p>
+				</section>
+				<section>
+					<div class="container">
+						<img src="../custom/images/linked-me.svg" alt="linkedin.com/in/blanc-frederic" width="40%" />
+						<div>
+							<p><strong><a href="https://www.linkedin.com/in/blanc-frederic/">Fred Blanc</a></strong><br />
+							<a href="https://github.com/blanc-frederic">github.com/blanc-frederic</a></p>
+							<p>Vice-coordinateur <a href="https://www.meetup.com/fr-FR/aperophp-toulouse/">AFUP Toulouse</a></p>
+							<p>Lead dev chez <a href="https://www.safti.fr">SAFTI</a></p>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>Les personnages</h2>
+					<ul>
+						<li><strong>Legacy</strong> : le sage et sénile<br/>
+							il est pénible, coûte cher et rechigne à évoluer</li>
+						<li><strong>Symfony</strong> : l'apprenti prometteur<br />
+							sympa et rapide, mais il ne sait pas encore tout faire</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Objectif : retraite</h2>
+					<p>on ne peut pas remplacer le legacy d'un coup</p>
+					<p>⇒ strangler pattern</p>
+				</section>
+
+				<section>
+					<h2>Strangler pattern - avec isolation</h2>
+					<p>Symfony et Legacy ne se parlent pas</p>
+					<p>utile par exemple si Legacy pas en php ou dans une très vieille version</p>
+					<p>Symfony renvoi vers url dédiée au legacy s'il ne sait pas traiter</p>
+					<p>Usage partiel du Legacy possible par appel http côté client (ajax)</p>
+				</section>
+
+				<section>
+					<h2>Strangler pattern - avec couplage</h2>
+					<p>Ils sont rassemblés dans une seule application</p>
+					<p>Si Symfony ne sait pas traiter, il boot le legacy et lui laisse la main</p>
+					<ol>
+						<li>Le legacy peut faire appel à du code Symfony</li>
+						<li>Le code Symfony ne doit pas utiliser le code legacy</li>
+					</ol>
+					<p>On veut bien contaminer le legacy par du Symfony mais pas l'inverse</p>
+				</section>
+
+				<section>
+					<h2>Par quels sujets commencer</h2>
+					<ul>
+						<li>Controlleur capable de boot le legacy</li>
+						<li>Auth</li>
+						<li>Load des paramètres</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Merci !</h2>
+					<p>Des questions ?</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				transitionSpeed: 'fast',
+				plugins: [ RevealHighlight ],
+				allottedTime: 30 /* slides */ * 60 * 1000,
+				keyboard: {
+					13: () => {
+						ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+					},
+				},
+				dependencies: [
+					{ src: '../custom/plugin/elapsed-time-bar/elapsed-time-bar.js' }
+				]
+			});
+		</script>
+	</body>
+</html>
