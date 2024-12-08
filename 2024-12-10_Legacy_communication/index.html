@@ -23,17 +23,6 @@
 					<hr/>
 					<p>Apéro PHP 10/12/2024</p>
 				</section>
-				<section>
-					<div class="container">
-						<img src="../custom/images/linked-me.svg" alt="linkedin.com/in/blanc-frederic" width="40%" />
-						<div>
-							<p><strong><a href="https://www.linkedin.com/in/blanc-frederic/">Fred Blanc</a></strong><br />
-							<a href="https://github.com/blanc-frederic">github.com/blanc-frederic</a></p>
-							<p>Vice-coordinateur <a href="https://www.meetup.com/fr-FR/aperophp-toulouse/">AFUP Toulouse</a></p>
-							<p>Lead dev chez <a href="https://www.safti.fr">SAFTI</a></p>
-						</div>
-					</div>
-				</section>
 
 				<section>
 					<h2>Les personnages</h2>
@@ -46,42 +35,82 @@
 				</section>
 
 				<section>
-					<h2>Objectif : retraite</h2>
-					<p>on ne peut pas remplacer le legacy d'un coup</p>
-					<p>⇒ strangler pattern</p>
-				</section>
-
-				<section>
-					<h2>Strangler pattern - avec isolation</h2>
-					<p>Symfony et Legacy ne se parlent pas</p>
-					<p>utile par exemple si Legacy pas en php ou dans une très vieille version</p>
-					<p>Symfony renvoi vers url dédiée au legacy s'il ne sait pas traiter</p>
-					<p>Usage partiel du Legacy possible par appel http côté client (ajax)</p>
-				</section>
-
-				<section>
-					<h2>Strangler pattern - avec couplage</h2>
-					<p>Ils sont rassemblés dans une seule application</p>
-					<p>Si Symfony ne sait pas traiter, il boot le legacy et lui laisse la main</p>
-					<ol>
-						<li>Le legacy peut faire appel à du code Symfony</li>
-						<li>Le code Symfony ne doit pas utiliser le code legacy</li>
-					</ol>
-					<p>On veut bien contaminer le legacy par du Symfony mais pas l'inverse</p>
-				</section>
-
-				<section>
-					<h2>Par quels sujets commencer</h2>
+					<h2>Remplacer Legacy par Symfony</h2>
 					<ul>
-						<li>Controlleur capable de boot le legacy</li>
-						<li>Auth</li>
-						<li>Load des paramètres</li>
+						<li>Sans bloquer évolutions</li>
+						<li>Prise de risques limitée</li>
 					</ul>
+					<p>Cohabitation nécessaire ⇒ communication</p>
+				</section>
+
+				<section>
+					<h2>Remplacement avec isolation</h2>
+					<p>utile si Legacy pas en php ou vieille version</p>
+					<p>Deux app : Symfony et Legacy</p>
+					<p>Quand Symfony ne sait pas ⇒ renvoi vers url Legacy</p>
+					<p>⚠ pas de partage de code</p>
+				</section>
+
+				<section>
+					<h2>Remplacement avec couplage</h2>
+					<p>Une app : Quand Symfony ne sait pas ⇒ appel legacy</p>
+					<ol>
+						<li>Legacy peut utiliser Symfony</li>
+						<li>Symfony <strong>ne doit pas</strong> utiliser Legacy</li>
+					</ol>
+					<p>⚠ partage de la version de php</p>
+				</section>
+
+				<section>
+					<h2>Appel Legacy quand Symfony ne sait pas</h2>
+					<p>Deux solutions :</p>
+					<ul>
+						<li>Appel Legacy dans Front controller</li>
+						<li>Appel Legacy via controller dédié</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Appel Legacy dans Front controller</h2>
+					<img src="schema/legacy-front-controller.png" />
+				</section>
+
+				<section>
+					<img src="code/front-controller.png" />
+				</section>
+
+				<section>
+					<img src="code/legacy-bridge.png" />
+				</section>
+
+				<section>
+					<h2>Appel Legacy dans controller dédié</h2>
+					<img src="schema/legacy-routing.png" />
+				</section>
+
+				<section>
+					<img src="code/route.png" />
+					<img src="code/legacy-controller.png" />
+				</section>
+
+
+				<section>
+					<h2>Injection dans Legacy</h2>
+					<p>...</p>
 				</section>
 
 				<section>
 					<h2>Merci !</h2>
 					<p>Des questions ?</p>
+					<div class="container">
+						<div>
+							<p class="list-title">Sources</p>
+							<ul>
+								<li><a href="https://symfony.com/doc/current/migration.html">Symfony : migrate to Symfony</a></li>
+								<li><a href="https://martinfowler.com/bliki/StranglerFigApplication.html">M. Fowler : Strangler Fig</a></li>
+							</ul>
+						</div>
+					</div>
 				</section>
 			</div>
 		</div>
@@ -95,7 +124,7 @@
 				hash: true,
 				transitionSpeed: 'fast',
 				plugins: [ RevealHighlight ],
-				allottedTime: 30 /* slides */ * 60 * 1000,
+				allottedTime: 20 * 60 * 1000,
 				keyboard: {
 					13: () => {
 						ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();

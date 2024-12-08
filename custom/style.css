@@ -9,6 +9,8 @@
 .reveal .container { display: flex; }
 .container div { margin: 0 1em; }
 
+.reveal .list-title { text-align: left; }
+
 hr { border: .1em solid #2a76dd; }
 
 .slidetitle { background: radial-gradient(#555a5f, #1c1e20); }
