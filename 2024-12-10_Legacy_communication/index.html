@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Apéro PHP du 10/12/2024 - Symfony : communiquer avec son Legacy</title>
+
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/white.css" id="theme">
+		
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" id="highlight-theme">
+		
+		<link rel="stylesheet" href="../custom/style.css" id="theme">
+		<link rel="stylesheet" href="../custom/afup-toulouse.css" id="afup-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Symfony : communiquer avec son Legacy</h1>
+					<hr/>
+					<p>Apéro PHP 10/12/2024</p>
+				</section>
+
+				<section>
+					<h2>Les personnages</h2>
+					<ul>
+						<li><strong>Legacy</strong> : le sage et sénile<br/>
+							il est pénible, coûte cher et rechigne à évoluer</li>
+						<li><strong>Symfony</strong> : l'apprenti prometteur<br />
+							sympa et rapide, mais il ne sait pas encore tout faire</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Remplacer Legacy par Symfony</h2>
+					<ul>
+						<li>Sans bloquer évolutions</li>
+						<li>Prise de risques limitée</li>
+					</ul>
+					<p>Cohabitation nécessaire ⇒ communication</p>
+				</section>
+
+				<section>
+					<h2>Remplacement avec isolation</h2>
+					<p>utile si Legacy pas en php ou vieille version</p>
+					<p>Deux app : Symfony et Legacy</p>
+					<p>Quand Symfony ne sait pas ⇒ renvoi vers url Legacy</p>
+					<p>⚠ pas de partage de code</p>
+				</section>
+
+				<section>
+					<h2>Remplacement avec couplage</h2>
+					<p>Une app : Quand Symfony ne sait pas ⇒ appel legacy</p>
+					<ol>
+						<li>Legacy peut utiliser Symfony</li>
+						<li>Symfony <strong>ne doit pas</strong> utiliser Legacy</li>
+					</ol>
+					<p>⚠ partage de la version de php</p>
+				</section>
+
+				<section>
+					<h2>Appel Legacy quand Symfony ne sait pas</h2>
+					<p>Deux solutions :</p>
+					<ul>
+						<li>Appel Legacy dans Front controller</li>
+						<li>Appel Legacy via controller dédié</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Appel Legacy dans Front controller</h2>
+					<img src="schema/legacy-front-controller.png" />
+				</section>
+
+				<section>
+					<img src="code/front-controller.png" />
+				</section>
+
+				<section>
+					<img src="code/legacy-bridge.png" />
+				</section>
+
+				<section>
+					<h2>Appel Legacy dans controller dédié</h2>
+					<img src="schema/legacy-routing.png" />
+				</section>
+
+				<section>
+					<img src="code/config/route.png" />
+					<img src="code/legacy-controller.png" />
+				</section>
+
+				<section>
+					<h2>Appel Symfony depuis Legacy</h2>
+					<p>Methodes statiques</p>
+					<img src="code/static-method.png" />
+				</section>
+
+				<section>
+					<h2>Appel avec injection dépendances</h2>
+					<img src="code/injection/legacy-service-locator.png" />
+				</section>
+
+				<section>
+					<h2>Exemple : url generator</h2>
+					<img src="code/injection/service-bridge.png" />
+				</section>
+
+				<section>
+					<h2>Preload nécessaire</h2>
+					<img src="code/injection/legacy-controller-preload.png" />
+				</section>
+
+				<section>
+					<img src="code/injection/preloader.png" />
+				</section>
+
+				<section>
+					<h2>Config preload</h2>
+					<img src="code/config/services-iterator.png" />
+				</section>
+
+				<section>
+					<h2>Merci !</h2>
+					<div class="container">
+						<img src="qr-code.svg" width="40%" alt="" />
+						<div>
+							<p>Des questions ?</p>
+							<p>&nbsp;</p>
+							<p class="list-title">Plus d'infos</p>
+							<ul>
+								<li><a href="https://symfony.com/doc/current/migration.html">Symfony : migrate to Symfony</a></li>
+								<li><a href="https://martinfowler.com/bliki/StranglerFigApplication.html">M. Fowler : Strangler Fig</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				transitionSpeed: 'fast',
+				plugins: [ RevealHighlight ],
+				allottedTime: 20 * 60 * 1000,
+				keyboard: {
+					13: () => {
+						ElapsedTimeBar.isPaused ? ElapsedTimeBar.resume() : ElapsedTimeBar.pause();
+					},
+				},
+				dependencies: [
+					{ src: '../custom/plugin/elapsed-time-bar/elapsed-time-bar.js' }
+				]
+			});
+		</script>
+	</body>
+</html>
